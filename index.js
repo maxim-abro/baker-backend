@@ -8,7 +8,7 @@ const express = require('express'),
 
 //Подключение к бд
 mongoose.connect(
-  'mongodb://localhost:27017/baker',
+  'mongodb://localhost.localdomain:27017/baker',
   {
     useNewUrlParser: true
   }, err => {
