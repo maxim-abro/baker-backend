@@ -3,11 +3,12 @@ const express = require('express'),
   mongoose = require('mongoose'),
   http = require('http'),
   cors = require('cors'),
-  { routes } = require('./src/route')
+  { routes } = require('./src/route'),
+  path = require('path')
 
 //Подключение к бд
 mongoose.connect(
-  'mongodb://localhost.localdomain:27017/baker',
+  'mongodb://localhost:27017/baker',
   {
     useNewUrlParser: true
   }, err => {
@@ -28,6 +29,8 @@ app.use(bodyParser.urlencoded({
 routes.forEach(item => {
   app.use(`/v1/${item}`, require(`./src/route/${item}`))
 })
+
+app.use('/v1/images', express.static(path.join(__dirname, 'uploads')))
 
 const port = 3000
 http.createServer({}, app).listen(port)
