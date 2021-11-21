@@ -53,7 +53,7 @@ const schema = new Schema({
       },
       amount: {
         type: Number,
-        default: ''
+        default: 0
       },
       typeAmount: {
         type: String,
@@ -61,6 +61,10 @@ const schema = new Schema({
       }
     }
   ],
+  views: {
+    type: Number,
+    default: 0
+  },
   comments: [
     {
       author: {

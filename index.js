@@ -23,7 +23,7 @@ app.use(bodyParser.json({limit: '50mb'}))
 app.use(bodyParser.urlencoded({
   extended: true,
   limit: '50mb',
-  parameterLimit:50000
+  parameterLimit: 50000
 }))
 
 routes.forEach(item => {

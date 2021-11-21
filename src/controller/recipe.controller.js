@@ -11,7 +11,6 @@ module.exports = {
       //сохраняем рецепт
       const newRecipe = await recipe.save()
 
-
       //////////Добавление в категории////////////////
       //ищем категорию в базе данных, которая есть в рецепте
       const foundCategory = await Category.findById(body.category)
@@ -23,8 +22,8 @@ module.exports = {
 
 
       ////////////Добавление в теги///////////////////////
-      for (const item of recipe.tags) {
-        const findTag = await Tag.findOne({title: item.toLowerCase()})
+      for (let item of recipe.tags) {
+        const findTag = await Tag.findOne({title: item.toLowerCase() })
         if (findTag) {
           findTag.products.push(newRecipe.id)
           const newTag = await Tag.findByIdAndUpdate(findTag._id, findTag)
@@ -42,16 +41,17 @@ module.exports = {
       ////////////Добавление в теги///////////////////////
 
       ////////////Добавление в ингредиенты///////////////////////
-      for (const item of recipe.ingredients) {
-        const findIngredients = await Ingredients.findOne({ title: item.title })
+      for (let item of recipe.ingredients) {
+        const findIngredients = await Ingredients.findOne({ title: item.title.toLowerCase() })
         if (findIngredients) {
-          findIngredients.push(newRecipe.id)
+          findIngredients.products.push(newRecipe.id)
           const newIngredient = await Ingredients.findByIdAndUpdate(findIngredients._id, findIngredients)
         } else {
-          let ingredient = new Ingredients({
-            title: item.title.toLowerCase(),
-            description: '',
-            products: [newRecipe.id]
+          let ingredient = new Ingredients(
+            {
+              title: item.title.toLowerCase(),
+              description: '',
+              products: [newRecipe.id]
           })
           await ingredient.save()
         }

@@ -17,4 +17,4 @@ const schema = new Schema({
   ]
 })
 
-module.exports = model('Ingredient', schema)
+module.exports = model('Ingredients', schema)
