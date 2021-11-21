@@ -1,6 +1,6 @@
 const genericCrud = require('./generic.controller')
 const boom = require('boom')
-const { Recipe, Category, Tag } = require('../model')
+const { Recipe, Category, Tag, Ingredients } = require('../model')
 
 module.exports = {
   ...genericCrud(Recipe),
@@ -41,6 +41,22 @@ module.exports = {
       }
       ////////////Добавление в теги///////////////////////
 
+      ////////////Добавление в ингредиенты///////////////////////
+      for (const item of recipe.ingredients) {
+        const findIngredients = await Ingredients.findOne({ title: item.title })
+        if (findIngredients) {
+          findIngredients.push(newRecipe.id)
+          const newIngredient = await Ingredients.findByIdAndUpdate(findIngredients._id, findIngredients)
+        } else {
+          let ingredient = new Ingredients({
+            title: item.title.toLowerCase(),
+            description: '',
+            products: [newRecipe.id]
+          })
+          await ingredient.save()
+        }
+      }
+      ////////////Добавление в ингредиенты///////////////////////
       return res.status(200).send(newRecipe)
     } catch (e) {
       return res.status(400).send(boom.boomify(e))

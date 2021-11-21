@@ -11,7 +11,7 @@ const schema = new Schema({
   },
   date: {
     type: String,
-    default: new Date()
+    default: Date.now()
   },
   cookingTime: {
     type: String,
@@ -34,7 +34,7 @@ const schema = new Schema({
     default: ''
   },
   likes: {
-    types: Number,
+    type: Number,
     default: 0
   },
   category: {

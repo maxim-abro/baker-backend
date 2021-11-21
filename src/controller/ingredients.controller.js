@@ -1,6 +1,6 @@
 const genericCrud = require('./generic.controller')
-const { Product } = require('../model')
+const { Ingredients } = require('../model')
 
 module.exports = {
-  ...genericCrud(Product)
+  ...genericCrud(Ingredients)
 }

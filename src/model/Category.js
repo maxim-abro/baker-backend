@@ -12,7 +12,7 @@ const schema = new Schema({
   products: [
     {
       type: ObjectId,
-      ref: 'Product'
+      ref: 'Recipe'
     }
   ]
 })

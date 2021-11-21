@@ -8,7 +8,7 @@ const express = require('express'),
 
 //Подключение к бд
 mongoose.connect(
-  'mongodb://localhost.localdomain:27017/baker',
+  'mongodb://localhost:27017/baker',
   {
     useNewUrlParser: true
   }, err => {
@@ -35,3 +35,6 @@ app.use('/v1/images', express.static(path.join(__dirname, 'uploads')))
 const port = 3000
 http.createServer({}, app).listen(port)
 console.log('Сервер запущен на порту ' + port)
+
+
+//  'mongodb://localhost.localdomain:27017/baker'

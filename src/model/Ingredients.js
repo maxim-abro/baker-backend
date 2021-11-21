@@ -17,4 +17,4 @@ const schema = new Schema({
   ]
 })
 
-module.exports = model('Tag', schema)
+module.exports = model('Ingredient', schema)

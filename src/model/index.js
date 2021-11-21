@@ -1,13 +1,13 @@
-const Product = require('./Product'),
-  Category = require('./Category'),
-  Recipe = require('./recipe'),
+const Category = require('./Category'),
+  Recipe = require('./Recipe'),
   User = require('./User'),
-  Tag = require('./Tag')
+  Tag = require('./Tag'),
+  Ingredients = require('./Ingredients')
 
 module.exports = {
-  Product,
   Category,
   Recipe,
   User,
   Tag,
+  Ingredients,
 }
